@@ -39,10 +39,10 @@ public class PlayerRPG : MonoBehaviour
         }
     }
 
-    readonly int hashAttack = Animator.StringToHash("SwordAttack");
-    readonly int hashShieldAttack = Animator.StringToHash("ShieldAttack");
     readonly int hashSpeedX = Animator.StringToHash("speedX");
     readonly int hashSpeedY = Animator.StringToHash("speedY");
+    readonly int hashAttack = Animator.StringToHash("SwordAttack");
+    readonly int hashShieldAttack = Animator.StringToHash("ShieldAttack");
 
     void Start()
     {
@@ -106,6 +106,17 @@ public class PlayerRPG : MonoBehaviour
             camTr.localPosition = Vector3.back * camDist;
     }
 
+    private void OnDrawGizmos()
+    {
+        if (!camTr || !camPivot) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(camPivot.position, (camTr.position - camPivot.position).normalized * camDist);   // 카메라 Pivot에서 카메라까지의 Ray
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(camTr.position, camPivot.position);     // 카메라에서 카메라 Pivot까지의 벡터
+    }
+
     void PlayerIdleAndMove()
     {
         RunCheck();
@@ -142,8 +153,8 @@ public class PlayerRPG : MonoBehaviour
     void CalcInputMove()
     {
         moveVelocity = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized * (IsRun ? runSpeed : walkSpeed);  //방향
-        ani.SetFloat("speedX", Input.GetAxis("Horizontal"));
-        ani.SetFloat("speedY", Input.GetAxis("Vertical"));
+        ani.SetFloat(hashSpeedX, Input.GetAxis("Horizontal"));
+        ani.SetFloat(hashSpeedY, Input.GetAxis("Vertical"));
         moveVelocity = transform.TransformDirection(moveVelocity);  //moveVelocity를 절대좌표로 움직이도록
 
         if (0.01f < moveVelocity.sqrMagnitude)
@@ -155,7 +166,7 @@ public class PlayerRPG : MonoBehaviour
             if (IsRun)
             {
                 Quaternion characterRot = Quaternion.LookRotation(moveVelocity);
-                characterRot.x = camRot.z = 0f;
+                characterRot.x = characterRot.z = 0f;
                 modelTr.rotation = Quaternion.Slerp(modelTr.rotation, characterRot, Time.deltaTime * 10f);
             }
 
