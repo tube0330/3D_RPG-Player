@@ -152,7 +152,7 @@ public class PlayerRPG : MonoBehaviour
     //움직임 계산
     void CalcInputMove()
     {
-        moveVelocity = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized * (IsRun ? runSpeed : walkSpeed);  //방향
+        moveVelocity = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized * (IsRun ? runSpeed : walkSpeed);  //이동 방향과 속도를 계산
         ani.SetFloat(hashSpeedX, Input.GetAxis("Horizontal"));
         ani.SetFloat(hashSpeedY, Input.GetAxis("Vertical"));
         moveVelocity = transform.TransformDirection(moveVelocity);  //moveVelocity를 절대좌표로 움직이도록
