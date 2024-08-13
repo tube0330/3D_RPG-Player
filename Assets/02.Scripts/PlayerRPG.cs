@@ -99,7 +99,7 @@ public class PlayerRPG : MonoBehaviour
         camPivot.eulerAngles = mouseMove;   //카메라 피봇 회전 계산 (누적된 마우스 이동 값 적용)
 
         RaycastHit hit;
-        Vector3 dir = (camTr.position - camPivot.position/*플레이어 뒷통수에 있음*/).normalized;
+        Vector3 dir = (camTr.position - camPivot.position/*플레이어 위에 있음*/).normalized;
 
         if (Physics.Raycast(camPivot.position, dir, out hit, camDist, ~(1 << playerLayer)/*PlayerLayer제외*/)) //장애물 존재
             camTr.localPosition = Vector3.back * hit.distance;  //카메라의 로컬 Z좌표를 hit.distance로 설정
