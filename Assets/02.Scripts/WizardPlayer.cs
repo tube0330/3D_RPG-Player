@@ -34,9 +34,6 @@ public class WizardPlayer : MonoBehaviour
     [SerializeField] Vector3 mouseMove = Vector3.zero;  //마우스 이동 좌표
     [SerializeField] int playerLayer;
 
-    [Header("Attack")]
-    [SerializeField] string swordTag = "SWORD";
-
     void Start()
     {
         /* controller = GetComponent<CharacterController>();

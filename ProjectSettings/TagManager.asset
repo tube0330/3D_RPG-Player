@@ -4,9 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Collide
-  - boxAttack
-  - SWORD
+  - Fire
+  - SWORD_ATTACK
   layers:
   - Default
   - TransparentFX
