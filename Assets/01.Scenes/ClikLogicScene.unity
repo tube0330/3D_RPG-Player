@@ -774,6 +774,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1HSword
       objectReference: {fileID: 0}
+    - target: {fileID: 3418011884731919454, guid: 29b475577bd142043a2ccad80f84455f, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3418011884732149886, guid: 29b475577bd142043a2ccad80f84455f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

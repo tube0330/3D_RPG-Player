@@ -52,15 +52,7 @@ public class WizardPlayer : MonoBehaviour
         camPivot = camTr.parent;
         playerLayer = LayerMask.NameToLayer("PLAYER");
     }
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.CompareTag(swordTag))
-        {
-            Debug.Log("닿음");
-            ani.SetTrigger(hashUnderAttack);
-        }
-
-    }
+    
     void Update()
     {
         ClickCheck();
