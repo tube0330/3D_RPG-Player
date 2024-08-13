@@ -25,6 +25,7 @@ public class WizardPlayer : MonoBehaviour
     [Header("Animation")]
     readonly int hashMoveSpeed = Animator.StringToHash("moveSpeed");
     readonly int hashAttack = Animator.StringToHash("Attack");
+    readonly int hashUnderAttack = Animator.StringToHash("UnderAttack");
 
     [Header("Camera")]
     [SerializeField] Transform camPivot;
@@ -32,6 +33,9 @@ public class WizardPlayer : MonoBehaviour
     [SerializeField] float camDist = 5f;
     [SerializeField] Vector3 mouseMove = Vector3.zero;  //마우스 이동 좌표
     [SerializeField] int playerLayer;
+
+    [Header("Attack")]
+    [SerializeField] string swordTag = "SWORD";
 
     void Start()
     {
@@ -48,7 +52,15 @@ public class WizardPlayer : MonoBehaviour
         camPivot = camTr.parent;
         playerLayer = LayerMask.NameToLayer("PLAYER");
     }
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.CompareTag(swordTag))
+        {
+            Debug.Log("닿음");
+            ani.SetTrigger(hashUnderAttack);
+        }
 
+    }
     void Update()
     {
         ClickCheck();
