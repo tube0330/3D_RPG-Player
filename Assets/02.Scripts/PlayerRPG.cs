@@ -80,7 +80,7 @@ public class PlayerRPG : MonoBehaviour
         CameraDistCtrl();   //카메라의 거리 조절 메서드 호출
     }
 
-    //카메라 움직임 조절 (?)
+    //카메라 움직임 조절
     void LateUpdate()
     {
         float cam_H = 1.3f;
