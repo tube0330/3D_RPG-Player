@@ -17,11 +17,10 @@ public class MariaState : MonoBehaviour
     [SerializeField] Transform playerTr;
     [SerializeField] Transform tr;
     [SerializeField] Animator ani;
-    [SerializeField] CapsuleCollider cap;
 
     float attackDist = 3.5f;
     float traceDist = 10f;
-    bool isDie = false;
+    public bool isDie = false;
 
 
     void Awake()
@@ -29,7 +28,6 @@ public class MariaState : MonoBehaviour
         mariaMove = GetComponent<MariaMove>();
         ani = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        cap = GetComponent<CapsuleCollider>();
         tr = transform;
         playerTr = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
@@ -86,6 +84,12 @@ public class MariaState : MonoBehaviour
                     ani.SetBool("attack", true);
                     ani.SetBool("run", false);
                     tr.LookAt(playerTr);
+                    break;
+
+                case State.DIE:
+                    isDie = true;
+                    mariaMove.patroll = false;
+                    ani.SetTrigger("Die");
                     break;
             }
             yield return new WaitForSeconds(0.2f);

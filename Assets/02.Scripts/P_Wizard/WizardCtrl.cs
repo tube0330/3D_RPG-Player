@@ -59,9 +59,12 @@ public class WizardCtrl : MonoBehaviour
 
         ClickCheck();
         PlayerMove();
+        WizardAttack();
+    }
 
-        //Attack Animation
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+    private void WizardAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
             StartCoroutine(AttackAnimation());
     }
 

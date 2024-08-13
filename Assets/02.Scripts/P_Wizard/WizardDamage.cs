@@ -27,10 +27,10 @@ public class WizardDamage : MonoBehaviour
         if (col.gameObject.CompareTag(swordAttackTag))
         {
             ani.SetTrigger(hashUnderAttack);
-            Debug.Log("wizard가 맞음");
+            Debug.Log($"위저드가 {hitCnt}만큼 맞음");
             hitCnt++;
 
-            if (hitCnt >= 5)
+            if (hitCnt >= 10)
                 WizardDie();
         }
     }

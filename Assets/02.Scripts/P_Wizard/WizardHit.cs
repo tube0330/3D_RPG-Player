@@ -15,7 +15,7 @@ public class WizardHit : MonoBehaviour
     public void WizardEnable()
     {
         col.enabled = true;
-        mesh.enabled = false;
+        mesh.enabled = true;
     }
 
     public void WizardDisable()
