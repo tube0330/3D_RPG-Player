@@ -397,19 +397,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5168078086346107329, guid: 1a755762d4bbaf840873c8ccde013db2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 186992, guid: 1a755762d4bbaf840873c8ccde013db2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2096941256}
-    - targetCorrespondingSourceObject: {fileID: 186992, guid: 1a755762d4bbaf840873c8ccde013db2, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2096941257}
     - targetCorrespondingSourceObject: {fileID: 186992, guid: 1a755762d4bbaf840873c8ccde013db2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2096941258}
+    - targetCorrespondingSourceObject: {fileID: 186992, guid: 1a755762d4bbaf840873c8ccde013db2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2096941261}
+    - targetCorrespondingSourceObject: {fileID: 186992, guid: 1a755762d4bbaf840873c8ccde013db2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2096941256}
   m_SourcePrefab: {fileID: 100100000, guid: 1a755762d4bbaf840873c8ccde013db2, type: 3}
 --- !u!1 &1935994680
 GameObject:
@@ -525,6 +532,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c93d30fd28ed0b4484300dc3980106a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tr: {fileID: 0}
+  agent: {fileID: 0}
+  controller: {fileID: 0}
+  rb: {fileID: 0}
+  col: {fileID: 0}
 --- !u!54 &2096941257
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -578,6 +590,29 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!136 &2096941261
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096941251}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
