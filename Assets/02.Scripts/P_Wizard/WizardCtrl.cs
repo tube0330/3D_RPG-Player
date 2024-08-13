@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WizardPlayer : MonoBehaviour
+public class WizardCtrl : MonoBehaviour
 {
     [Header("Components")]
     /* [SerializeField] CharacterController controller;
@@ -17,15 +17,14 @@ public class WizardPlayer : MonoBehaviour
     public double Timer = 0d;               //시간 재는 타이머
     public float doubleClickSecond = 0.25f; //0.25초 안에 누르면 double click됨
     public bool isOneClick = false;
+    int groundRayer;
     Ray ray;
     RaycastHit hit;
     Vector3 targetPos = Vector3.zero;
-    int groundRayer;
 
     [Header("Animation")]
     readonly int hashMoveSpeed = Animator.StringToHash("moveSpeed");
     readonly int hashAttack = Animator.StringToHash("Attack");
-    readonly int hashUnderAttack = Animator.StringToHash("UnderAttack");
 
     [Header("Camera")]
     [SerializeField] Transform camPivot;
@@ -33,6 +32,8 @@ public class WizardPlayer : MonoBehaviour
     [SerializeField] float camDist = 5f;
     [SerializeField] Vector3 mouseMove = Vector3.zero;  //마우스 이동 좌표
     [SerializeField] int playerLayer;
+
+    public WizardDamage wizardDamage;
 
     void Start()
     {
@@ -48,12 +49,24 @@ public class WizardPlayer : MonoBehaviour
         camTr = Camera.main.transform;
         camPivot = camTr.parent;
         playerLayer = LayerMask.NameToLayer("PLAYER");
+
+        wizardDamage = GetComponent<WizardDamage>();
     }
-    
+
     void Update()
     {
-        ClickCheck();
+        if (wizardDamage.isDie) return;
 
+        ClickCheck();
+        PlayerMove();
+
+        //Attack Animation
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            StartCoroutine(AttackAnimation());
+    }
+
+    void PlayerMove()
+    {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(ray.origin, ray.direction * 30f, Color.green);
 
@@ -78,13 +91,6 @@ public class WizardPlayer : MonoBehaviour
                 agent.isStopped = false;            //이동 시작
             }
         }
-
-        //Attack Animation
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            StartCoroutine(AttackAnimation());
-        }
-
     }
 
     IEnumerator AttackAnimation()
@@ -96,6 +102,7 @@ public class WizardPlayer : MonoBehaviour
         yield return new WaitForSeconds(3f);
     }
 
+    //카메라 이동
     void LateUpdate()
     {
         float cam_H = 1.3f;
@@ -119,7 +126,7 @@ public class WizardPlayer : MonoBehaviour
         else camTr.localPosition = Vector3.back * camDist;
     }
 
-    private void ClickCheck()
+    void ClickCheck()
     {
         if (isOneClick && (Time.time - Timer) > doubleClickSecond/*더블 클릭 판단하는 허용 시간 초과*/)
         {

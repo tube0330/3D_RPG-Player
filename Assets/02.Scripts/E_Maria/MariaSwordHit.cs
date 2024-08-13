@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MariaSword : MonoBehaviour
+public class MariaSwordHit : MonoBehaviour
 {
     [SerializeField] BoxCollider col;
     [SerializeField] MeshRenderer mesh;
