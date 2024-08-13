@@ -33,9 +33,6 @@ public class WizardPlayer : MonoBehaviour
     [SerializeField] Vector3 mouseMove = Vector3.zero;  //마우스 이동 좌표
     [SerializeField] int playerLayer;
 
-
-    public bool isAttack = false;
-
     void Start()
     {
         /* controller = GetComponent<CharacterController>();
@@ -54,8 +51,6 @@ public class WizardPlayer : MonoBehaviour
 
     void Update()
     {
-        if (isAttack) return;
-
         ClickCheck();
 
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -83,21 +78,21 @@ public class WizardPlayer : MonoBehaviour
             }
         }
 
-        //Attack Animation(?)
+        //Attack Animation
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            float nextTime = 0f;
-            nextTime += Time.deltaTime;
-
-            isAttack = true;
-            agent.speed = 0f;
-            agent.isStopped = true;
-            ani.SetFloat(hashMoveSpeed, agent.speed);
-            ani.SetTrigger(hashAttack);
-
-            if (1.5f <= nextTime)
-                isAttack = false;
+            StartCoroutine(AttackAnimation());
         }
+
+    }
+
+    IEnumerator AttackAnimation()
+    {
+        agent.speed = 0f;
+        agent.isStopped = true;
+        ani.SetFloat(hashMoveSpeed, agent.speed);
+        ani.SetTrigger(hashAttack);
+        yield return new WaitForSeconds(3f);
     }
 
     void LateUpdate()
