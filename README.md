@@ -13,3 +13,6 @@
 - 클릭: walk
 - 더블클릭: run
 2. 멈춘 상태일 때 Attack, Skill 실행. 실행 중 다른 동작 제한
+
+# 240814
+Cinemachine 카메라 움직이기
