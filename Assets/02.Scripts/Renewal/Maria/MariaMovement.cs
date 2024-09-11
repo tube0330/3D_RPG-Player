@@ -123,12 +123,21 @@ public class MariaMovement : MonoBehaviour
     void CalcInputMove()
     {
         Vector2 inputMove = mariaInput.moveInput;
-        move = new Vector3(inputMove.x, 0f, inputMove.y).normalized * (IsRun ? runSpeed : walkSpeed);
+        Vector3 inputDir = new Vector3(inputMove.x, 0f, inputMove.y).normalized;
+
+        // 카메라의 방향과 오른쪽 방향을 고려하여 이동 방향을 변환
+        Vector3 forward = camTr.forward;
+        Vector3 right = camTr.right;
+        forward.y = right.y = 0; // 수직 방향 제거
+
+        // 카메라의 방향을 기준으로 방향 계산
+        Vector3 moveDir = (forward * inputDir.z + right * inputDir.x).normalized;
+        move = moveDir * (IsRun ? runSpeed : walkSpeed);
+
         ani.SetFloat(hashSpeedX, inputMove.x);
         ani.SetFloat(hashSpeedY, inputMove.y);
-        move = tr.TransformDirection(move);
 
-        if (0.01f < move.sqrMagnitude)  //캐릭터 이동중
+        if (0.01f < move.sqrMagnitude)  // 캐릭터 이동중
         {
             Quaternion camRot = camPivot.rotation;
             camRot.x = camRot.z = 0f;
@@ -141,11 +150,10 @@ public class MariaMovement : MonoBehaviour
                 modelTr.rotation = Quaternion.Slerp(modelTr.rotation, rot, Time.deltaTime * 10f);
             }
             else
-            {
                 modelTr.rotation = Quaternion.Slerp(modelTr.rotation, camRot, Time.deltaTime * 10f);
-            }
         }
     }
+
 
     void RunCheck()
     {
@@ -171,7 +179,7 @@ public class MariaMovement : MonoBehaviour
 
     void PlayerAttack()
     {
-        if (mariaInput.fireAction.WasPressedThisFrame()) // 마우스 왼쪽 버튼이 눌렸는지 확인
+        if (mariaInput.fireAction.WasPressedThisFrame())
         {
             state = PlayerState.ATTACK;
             ani.SetTrigger(hashAttack);
@@ -179,7 +187,7 @@ public class MariaMovement : MonoBehaviour
             ani.SetFloat(hashSpeedY, 0f);
             nextTime = 0f;
         }
-        else if (mariaInput.fireAction.WasPressedThisFrame()) // (올바른 경우로 수정)
+        else if (mariaInput.fireAction.WasPressedThisFrame())
         {
             state = PlayerState.ATTACK;
             ani.SetTrigger(hashShieldAttack);
