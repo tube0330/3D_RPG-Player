@@ -954,7 +954,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 60.000004
+  field of view: 40
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -980,8 +980,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.3089991, y: 0.000000011479311, z: -0.00000000244023, w: 0.9510623}
-  m_LocalPosition: {x: 0, y: -5.8301272, z: -0.09807563}
+  m_LocalRotation: {x: 0.16890228, y: -0.011007444, z: 0.009146677, w: 0.98552895}
+  m_LocalPosition: {x: 0.06936694, y: 1.4056435, z: 4.494301}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2353,7 +2353,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878464342}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06458096, y: -0.02107187, z: 0.018619003, w: 0.9975163}
+  m_LocalRotation: {x: 0.06458096, y: -0.02107188, z: 0.01861901, w: 0.9975163}
   m_LocalPosition: {x: -0.000000029790948, y: -4.928721e-10, z: -6.5949135e-10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2777,16 +2777,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: N_Maria
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6668192073615732714, guid: 2606829600cd01143ae77295d27594b6, type: 3}
+    - {fileID: 7403898747368298384, guid: 2606829600cd01143ae77295d27594b6, type: 3}
+    - {fileID: 4585289975064552878, guid: 2606829600cd01143ae77295d27594b6, type: 3}
+    - {fileID: 8548823458276447230, guid: 2606829600cd01143ae77295d27594b6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2935934416257097999, guid: 2606829600cd01143ae77295d27594b6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7985538715759522222}
+    - targetCorrespondingSourceObject: {fileID: 2935934416257097999, guid: 2606829600cd01143ae77295d27594b6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7985538715759522221}
   m_SourcePrefab: {fileID: 100100000, guid: 2606829600cd01143ae77295d27594b6, type: 3}
 --- !u!4 &7510293164654620750 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7849322043145751610, guid: 2606829600cd01143ae77295d27594b6, type: 3}
   m_PrefabInstance: {fileID: 3552736066454065293}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7985538715759522220 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2935934416257097999, guid: 2606829600cd01143ae77295d27594b6, type: 3}
+  m_PrefabInstance: {fileID: 3552736066454065293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7985538715759522221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7985538715759522220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1270e26d234314885bf5da80ab5c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7985538715759522222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7985538715759522220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3728416013f032140a0127f3bfc64010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mariaInput: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

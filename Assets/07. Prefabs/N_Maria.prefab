@@ -236,8 +236,8 @@ GameObject:
   - component: {fileID: 260769968592632545}
   - component: {fileID: 9126974261509820728}
   - component: {fileID: 1982813067839354585}
-  - component: {fileID: 7403898747368298384}
-  - component: {fileID: 6668192073615732714}
+  - component: {fileID: 2599746148908421889}
+  - component: {fileID: 276954862918244399}
   m_Layer: 6
   m_Name: N_Maria
   m_TagString: Untagged
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7403898747368298384
+--- !u!114 &2599746148908421889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mariaInput: {fileID: 0}
---- !u!114 &6668192073615732714
+--- !u!114 &276954862918244399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -339,10 +339,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2935934416257097999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2132149db4497ad4c8535308bfab0889, type: 3}
+  m_Script: {fileID: 11500000, guid: fb1270e26d234314885bf5da80ab5c98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
 --- !u!1 &8937720946856953663
 GameObject:
   m_ObjectHideFlags: 0
