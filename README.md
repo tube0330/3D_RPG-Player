@@ -12,3 +12,9 @@
 - 클릭: walk
 - 더블클릭: run
 2. 멈춘 상태일 때 Attack, Skill 실행. 실행 중 다른 동작 제한
+
+# 240911
+1. 카메라 Cinemachine으로 변경
+2. InputSystem으로 변경
+3. playerInput, playerMovement로 스크립트 분리
+4. 

@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,7 +58,7 @@ public class PlayerRPG : MonoBehaviour
 
     void Update()
     {
-        FreezeXZ(); //플레이어의 X축과 Z축 회전 고정 메서드
+        //FreezeXZ(); //플레이어의 X축과 Z축 회전 고정 메서드
 
         switch (state)
         {
@@ -77,36 +77,36 @@ public class PlayerRPG : MonoBehaviour
                 break;
         }
 
-        CameraDistCtrl();   //카메라의 거리 조절 메서드 호출
+        //CameraDistCtrl();   //카메라의 거리 조절 메서드 호출
     }
 
-    //카메라 움직임 조절
-    void LateUpdate()
-    {
-        float cam_H = 1.3f;
+    // //카메라 움직임 조절
+    // void LateUpdate()
+    // {
+    //     float cam_H = 1.3f;
 
-        camPivot.position = transform.position + Vector3.up * cam_H;    //플레이어 위치 + up * cam_H 값으로 고정
-        mouseMove += new Vector3(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X"), 0f);
-        //마우스 위아래 움직임=> player x축 변화, 마우스 좌우로 움직임 => Player y축 변화
-        //마우스 이동 값 누적 (상하: x축, 좌우: y축)
+    //     camPivot.position = transform.position + Vector3.up * cam_H;    //플레이어 위치 + up * cam_H 값으로 고정
+    //     mouseMove += new Vector3(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X"), 0f);
+    //     //마우스 위아래 움직임=> player x축 변화, 마우스 좌우로 움직임 => Player y축 변화
+    //     //마우스 이동 값 누적 (상하: x축, 좌우: y축)
 
-        if (mouseMove.x < -40f)
-            mouseMove.x = -40f;
+    //     if (mouseMove.x < -40f)
+    //         mouseMove.x = -40f;
 
-        else if (mouseMove.x > 40f)
-            mouseMove.x = 40f;
+    //     else if (mouseMove.x > 40f)
+    //         mouseMove.x = 40f;
 
-        camPivot.eulerAngles = mouseMove;   //카메라 피봇 회전 계산 (누적된 마우스 이동 값 적용)
+    //     camPivot.eulerAngles = mouseMove;   //카메라 피봇 회전 계산 (누적된 마우스 이동 값 적용)
 
-        RaycastHit hit;
-        Vector3 dir = (camTr.position - camPivot.position/*플레이어 위에 있음*/).normalized;
+    //     RaycastHit hit;
+    //     Vector3 dir = (camTr.position - camPivot.position/*플레이어 위에 있음*/).normalized;
 
-        if (Physics.Raycast(camPivot.position, dir, out hit, camDist, ~(1 << playerLayer)/*PlayerLayer제외*/)) //장애물 존재
-            camTr.localPosition = Vector3.back * hit.distance;  //카메라의 로컬 Z좌표를 hit.distance로 설정
+    //     if (Physics.Raycast(camPivot.position, dir, out hit, camDist, ~(1 << playerLayer)/*PlayerLayer제외*/)) //장애물 존재
+    //         camTr.localPosition = Vector3.back * hit.distance;  //카메라의 로컬 Z좌표를 hit.distance로 설정
 
-        else
-            camTr.localPosition = Vector3.back * camDist;
-    }
+    //     else
+    //         camTr.localPosition = Vector3.back * camDist;
+    // }
 
     private void OnDrawGizmos()
     {
@@ -151,7 +151,7 @@ public class PlayerRPG : MonoBehaviour
         controller.Move(moveVelocity * Time.deltaTime);
     }
 
-    //움직임 계산 (?)
+    //움직임 계산
     void CalcInputMove()
     {
         moveVelocity = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized * (IsRun ? runSpeed : walkSpeed);  //이동 방향과 속도를 계산
@@ -188,25 +188,25 @@ public class PlayerRPG : MonoBehaviour
             IsRun = false;
     }
 
-    //Mouse ScrollWheel로 카메라 거리 조절
-    void CameraDistCtrl()
-    {
-        camDist = camDist - Input.GetAxis("Mouse ScrollWheel");
-        /*
-         * 마우스 휠을 위로 굴림
-         * : camDist 값에서 양수를 빼 camDist 값이 감소. 카메라가 캐릭터에게 가까워짐
-         * camDist = 5 - 3      //2
-         * 마우스 휠을 아래로 굴림
-         * : camDist 값에서 음수를 빼(=더하기) camDist 값이 증가. 카메라가 캐릭터에게 멀어짐
-         * camDist = 5 - (-3)   //8
-         */
-    }
+    // //Mouse ScrollWheel로 카메라 거리 조절
+    // void CameraDistCtrl()
+    // {
+    //     camDist = camDist - Input.GetAxis("Mouse ScrollWheel");
+    //     /*
+    //      * 마우스 휠을 위로 굴림
+    //      * : camDist 값에서 양수를 빼 camDist 값이 감소. 카메라가 캐릭터에게 가까워짐
+    //      * camDist = 5 - 3      //2
+    //      * 마우스 휠을 아래로 굴림
+    //      * : camDist 값에서 음수를 빼(=더하기) camDist 값이 증가. 카메라가 캐릭터에게 멀어짐
+    //      * camDist = 5 - (-3)   //8
+    //      */
+    // }
 
-    //Characater Controller의 x축, z축 회전 제한
-    void FreezeXZ()
-    {
-        transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
-    }
+    // //Characater Controller의 x축, z축 회전 제한
+    // void FreezeXZ()
+    // {
+    //     transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
+    // }
 
     bool GroundCheck(out RaycastHit hit)
     {
