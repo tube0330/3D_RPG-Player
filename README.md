@@ -17,4 +17,3 @@
 1. 카메라 Cinemachine으로 변경
 2. InputSystem으로 변경
 3. playerInput, playerMovement로 스크립트 분리
-4. 

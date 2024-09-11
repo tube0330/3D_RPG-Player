@@ -56,8 +56,6 @@ public class MariaMovement : MonoBehaviour
         ani = transform.GetChild(0).GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
 
-        camDist = 5f;
-
         mariaInput = GetComponent<MariaInput>();
         tr = transform;
     }
