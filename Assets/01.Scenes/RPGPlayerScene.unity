@@ -665,11 +665,15 @@ MonoBehaviour:
   - {fileID: 1263817776}
   m_Instructions:
   - m_FullHash: 0
-    m_VirtualCamera: {fileID: 2046856201}
+    m_VirtualCamera: {fileID: 1263817776}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -934805187
     m_VirtualCamera: {fileID: 1263817776}
+    m_ActivateAfter: 0
+    m_MinDuration: 0
+  - m_FullHash: -584734289
+    m_VirtualCamera: {fileID: 2046856201}
     m_ActivateAfter: 0
     m_MinDuration: 0
   m_DefaultBlend:
