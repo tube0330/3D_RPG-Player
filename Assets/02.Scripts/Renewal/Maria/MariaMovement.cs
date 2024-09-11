@@ -28,6 +28,7 @@ public class MariaMovement : MonoBehaviour
     [SerializeField] Vector3 move = Vector3.zero;   //이동 속도
 
     MariaInput mariaInput;
+    Transform tr;
 
     bool isGround = false;
 
@@ -44,14 +45,13 @@ public class MariaMovement : MonoBehaviour
 
     readonly int hashSpeedX = Animator.StringToHash("speedX");
     readonly int hashSpeedY = Animator.StringToHash("speedY");
-    /* readonly int hashAttack = Animator.StringToHash("SwordAttack");
+    readonly int hashAttack = Animator.StringToHash("SwordAttack");
     readonly int hashShieldAttack = Animator.StringToHash("ShieldAttack");
- */
+
     void Start()
     {
         camTr = Camera.main.transform;
         camPivot = camTr.parent;
-        playerLayer = LayerMask.NameToLayer("PLAYER");
         modelTr = GetComponentsInChildren<Transform>()[1];
         ani = transform.GetChild(0).GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
@@ -59,6 +59,7 @@ public class MariaMovement : MonoBehaviour
         camDist = 5f;
 
         mariaInput = GetComponent<MariaInput>();
+        tr = transform;
     }
 
     void Update()
@@ -69,9 +70,9 @@ public class MariaMovement : MonoBehaviour
                 PlayerIdleAndMove();
                 break;
 
-            /* case PlayerState.ATTACK:
+            case PlayerState.ATTACK:
                 IdleAfterAttack();
-                break; */
+                break;
 
             case PlayerState.UNDER_ATTACK:
                 break;
@@ -81,7 +82,7 @@ public class MariaMovement : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    /* private void OnDrawGizmos()
     {
         if (!camTr || !camPivot) return;
 
@@ -90,11 +91,11 @@ public class MariaMovement : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawLine(camTr.position, camPivot.position);
-    }
+    } */
 
     void PlayerIdleAndMove()
     {
-        //RunCheck();
+        RunCheck();
 
         if (controller.isGrounded)
         {
@@ -110,7 +111,7 @@ public class MariaMovement : MonoBehaviour
             else
                 move.y = -1f;
 
-            //PlayerAttack();
+            PlayerAttack();
         }
         else
         {
@@ -127,13 +128,13 @@ public class MariaMovement : MonoBehaviour
         move = new Vector3(inputMove.x, 0f, inputMove.y).normalized * (IsRun ? runSpeed : walkSpeed);
         ani.SetFloat(hashSpeedX, inputMove.x);
         ani.SetFloat(hashSpeedY, inputMove.y);
-        move = transform.TransformDirection(move);
+        move = tr.TransformDirection(move);
 
         if (0.01f < move.sqrMagnitude)  //캐릭터 이동중
         {
             Quaternion camRot = camPivot.rotation;
             camRot.x = camRot.z = 0f;
-            transform.rotation = camRot;
+            tr.rotation = camRot;
 
             if (IsRun)
             {
@@ -148,20 +149,20 @@ public class MariaMovement : MonoBehaviour
         }
     }
 
-    /* void RunCheck()
+    void RunCheck()
     {
-        if (IsRun == false && Keyboard.current.leftShiftKey.isPressed)
+        if (IsRun == false && mariaInput.moveInput != Vector2.zero && Keyboard.current.leftShiftKey.isPressed)
             IsRun = true;
         else if (IsRun && mariaInput.moveInput == Vector2.zero)
             IsRun = false;
-    } */
+    }
 
     bool GroundCheck(out RaycastHit hit)
     {
-        return Physics.Raycast(transform.position, Vector3.down, out hit, 0.25f);
+        return Physics.Raycast(tr.position, Vector3.down, out hit, 0.25f);
     }
 
-    /* float nextTime = 0f;
+    float nextTime = 0f;
     void IdleAfterAttack()
     {
         nextTime += Time.deltaTime;
@@ -171,22 +172,23 @@ public class MariaMovement : MonoBehaviour
     }
 
     void PlayerAttack()
+{
+    if (mariaInput.fireAction.WasPressedThisFrame()) // 마우스 왼쪽 버튼이 눌렸는지 확인
     {
-        if (Keyboard.current.eKey.wasPressedThisFrame)    // "Fire1"을 키보드의 "e"키로 변경
-        {
-            state = PlayerState.ATTACK;
-            ani.SetTrigger(hashAttack);
-            ani.SetFloat(hashSpeedX, 0f);
-            ani.SetFloat(hashSpeedY, 0f);
-            nextTime = 0f;
-        }
-        else if (Keyboard.current.qKey.wasPressedThisFrame)  // "Fire2"을 키보드의 "q"키로 변경
-        {
-            state = PlayerState.ATTACK;
-            ani.SetTrigger(hashShieldAttack);
-            ani.SetFloat(hashSpeedX, 0f);
-            ani.SetFloat(hashSpeedY, 0f);
-            nextTime = 0f;
-        }
-    } */
+        state = PlayerState.ATTACK;
+        ani.SetTrigger(hashAttack);
+        ani.SetFloat(hashSpeedX, 0f);
+        ani.SetFloat(hashSpeedY, 0f);
+        nextTime = 0f;
+    }
+    else if (mariaInput.fireAction.WasPressedThisFrame()) // (올바른 경우로 수정)
+    {
+        state = PlayerState.ATTACK;
+        ani.SetTrigger(hashShieldAttack);
+        ani.SetFloat(hashSpeedX, 0f);
+        ani.SetFloat(hashSpeedY, 0f);
+        nextTime = 0f;
+    }
+}
+
 }

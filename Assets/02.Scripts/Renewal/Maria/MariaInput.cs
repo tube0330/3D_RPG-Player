@@ -9,6 +9,7 @@ public class MariaInput : MonoBehaviour
     public PlayerInput mariaInput;
     //InputActionMap playerMap;
     InputAction moveAction;
+    public InputAction fireAction;
 
     public Vector2 moveInput { get; private set; }
 
@@ -17,6 +18,7 @@ public class MariaInput : MonoBehaviour
         mariaInput = GetComponent<PlayerInput>();
         //playerMap = mariaInput.actions.FindActionMap("Player");
         moveAction = mariaInput.actions["Move"];
+        fireAction = mariaInput.actions["Fire"];    
     }
 
     void Update()
