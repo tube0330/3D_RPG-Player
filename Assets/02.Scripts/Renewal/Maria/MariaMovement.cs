@@ -172,23 +172,23 @@ public class MariaMovement : MonoBehaviour
     }
 
     void PlayerAttack()
-{
-    if (mariaInput.fireAction.WasPressedThisFrame()) // 마우스 왼쪽 버튼이 눌렸는지 확인
     {
-        state = PlayerState.ATTACK;
-        ani.SetTrigger(hashAttack);
-        ani.SetFloat(hashSpeedX, 0f);
-        ani.SetFloat(hashSpeedY, 0f);
-        nextTime = 0f;
+        if (mariaInput.fireAction.WasPressedThisFrame()) // 마우스 왼쪽 버튼이 눌렸는지 확인
+        {
+            state = PlayerState.ATTACK;
+            ani.SetTrigger(hashAttack);
+            ani.SetFloat(hashSpeedX, 0f);
+            ani.SetFloat(hashSpeedY, 0f);
+            nextTime = 0f;
+        }
+        else if (mariaInput.fireAction.WasPressedThisFrame()) // (올바른 경우로 수정)
+        {
+            state = PlayerState.ATTACK;
+            ani.SetTrigger(hashShieldAttack);
+            ani.SetFloat(hashSpeedX, 0f);
+            ani.SetFloat(hashSpeedY, 0f);
+            nextTime = 0f;
+        }
     }
-    else if (mariaInput.fireAction.WasPressedThisFrame()) // (올바른 경우로 수정)
-    {
-        state = PlayerState.ATTACK;
-        ani.SetTrigger(hashShieldAttack);
-        ani.SetFloat(hashSpeedX, 0f);
-        ani.SetFloat(hashSpeedY, 0f);
-        nextTime = 0f;
-    }
-}
 
 }
